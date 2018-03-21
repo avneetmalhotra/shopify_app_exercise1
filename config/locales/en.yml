@@ -30,4 +30,11 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  flash:
+    notice:
+      setting_updated_successfully: 'Your setting has been successfully updated.'
+
+  setting:
+    errors:
+      invalid_email_count: 'count must be alteast %{email_count}'
+      email_cannot_be_added: 'Email cannot be added for this setting.'

@@ -1,0 +1,43 @@
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    ShopifyApp.ready(function(){
+      ShopifyApp.Bar.initialize({ title: "Settings" });
+    });
+  </script>
+<% end %>
+
+<% @settings.each do |setting| %>
+  <%= nested_form_for setting do |form| %>
+    <div>
+      <label> 
+        <%= form.check_box :value %>
+        <%= setting.name %>
+      </label>
+    </div>
+
+    <% if setting.need_emails %>
+      <div>
+        <%= form.fields_for(:emails) do |email_form| %>
+          <div>
+            <%= email_form.label :address, 'Email address' %>
+            <%= email_form.email_field :address %>
+            <%= email_form.link_to_remove 'Remove this email' %>
+          </div>
+        <% end %>
+      </div>
+
+      <div>
+        <%= form.link_to_add 'Add Email', :emails %>
+      </div>
+    <% end %>
+    <br>
+
+    <div>
+      <%= form.submit 'Update' %>
+    </div>
+  <% end %>
+  
+  <hr>
+<% end %>
+
+<%= link_to 'Home', root_path %>

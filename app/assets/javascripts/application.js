@@ -13,3 +13,5 @@
 //= require jquery
 //= require rails-ujs
 //= require jquery-ui
+//= require jquery_nested_form
+//= require turbolinks

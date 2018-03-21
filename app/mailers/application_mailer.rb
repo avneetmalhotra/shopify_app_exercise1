@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: 'new_order_notification@development-store1.myshopify.com'
   layout 'mailer'
 end
