@@ -15,7 +15,7 @@
       </label>
     </div>
 
-    <% if setting.need_emails %>
+    <% if setting.require_emails %>
       <div>
         <%= form.fields_for(:emails) do |email_form| %>
           <div>

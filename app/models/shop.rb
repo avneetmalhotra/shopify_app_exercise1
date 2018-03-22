@@ -9,8 +9,8 @@ class Shop < ApplicationRecord
 
     def build_associated_settings
       settings.build([
-        { name: 'Mark new pending orders paid.', need_emails: false, webhook_topic: 'orders/create', webhook_action_name: 'mark_new_pending_order_paid' },
-        { name: 'Send new order confirmation email', need_emails: true, webhook_topic: 'orders/create', webhook_action_name: 'send_new_order_confirmation_email' }
+        { name: 'Mark new pending orders paid.', require_emails: false, webhook_topic: 'orders/create', webhook_action_name: 'mark_new_pending_order_paid' },
+        { name: 'Send new order confirmation email', require_emails: true, webhook_topic: 'orders/create', webhook_action_name: 'send_new_order_confirmation_email' }
         ])
     end
 end

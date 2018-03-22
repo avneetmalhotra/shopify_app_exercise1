@@ -7,12 +7,12 @@ class Setting < ApplicationRecord
 
   ## VALIDATIONS
   validates :name, :webhook_topic, :webhook_action_name, presence: true
-  validates :need_emails, :value, inclusion: { in: [true, false] }
+  validates :require_emails, :value, inclusion: { in: [true, false] }
 
   ## CALLBACKS
-  after_update :ensure_emails_count_valid, if: [:need_emails, :value]
+  after_update :ensure_emails_count_valid, if: [:require_emails, :value]
   after_update :register_webhook, if: [:value_changed?, :value]
-  before_save :destory_dependent_emails, on: :update, if: [:value_changed?, :value_was, :need_emails]
+  before_save :destory_dependent_emails, on: :update, if: [:value_changed?, :value_was, :require_emails]
   before_save :destory_webhook, on: :update, if: [:value_changed?, :value_was]
 
 
@@ -59,7 +59,7 @@ class Setting < ApplicationRecord
   end
 
   def ensure_email_can_be_associated(setting)
-    if need_emails == false || value == false
+    if require_emails == false || value == false
       errors[:base] << I18n.t(:email_cannot_be_added, scope: [:setting, :error])
       raise ActiveRecord::Rollback
     end
